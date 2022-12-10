@@ -1,6 +1,6 @@
 name: shrinex_core
 description: Common part used across shrinex.
-version: 0.0.1+1
+version: 0.0.1+2
 homepage: https://github.com/shrinex/shrinex-core
 
 environment:
