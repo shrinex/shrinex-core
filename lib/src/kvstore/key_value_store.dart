@@ -7,7 +7,7 @@
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class KeyValueStoreType {
+abstract class KeyValueStore {
   /// Reads a value from persistent storage, throwing an exception if it's not a
   /// bool.
   bool? getBool(String key);
@@ -50,12 +50,14 @@ abstract class KeyValueStoreType {
 
   /// Removes an entry from persistent storage.
   Future<bool> remove(String key);
+
+  factory KeyValueStore.using(SharedPreferences prefs) = _KeyValueStore;
 }
 
-class KeyValueStore implements KeyValueStoreType {
+class _KeyValueStore implements KeyValueStore {
   final SharedPreferences _prefs;
 
-  KeyValueStore(SharedPreferences prefs) : _prefs = prefs;
+  _KeyValueStore(SharedPreferences prefs) : _prefs = prefs;
 
   @override
   bool? getBool(String key) => _prefs.getBool(key);

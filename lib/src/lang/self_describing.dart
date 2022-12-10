@@ -5,6 +5,8 @@
  * Home: http://anyoptional.com
  */
 
+/// A type with a customized textual representation.
 mixin SelfDescribing {
+  /// A textual representation of this instance.
   String get description => toString();
 }

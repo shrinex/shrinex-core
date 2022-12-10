@@ -7,6 +7,6 @@
 
 library shrinex_core;
 
-export 'src/kvstore/keyvalue_store_type.dart';
+export 'src/kvstore/key_value_store.dart';
 export 'src/lang/raw_representable.dart';
 export 'src/lang/self_describing.dart';
