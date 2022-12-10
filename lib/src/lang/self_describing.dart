@@ -5,8 +5,6 @@
  * Home: http://anyoptional.com
  */
 
-library shrinex_core;
-
-export 'src/kvstore/keyvalue_store_type.dart';
-export 'src/lang/raw_representable.dart';
-export 'src/lang/self_describing.dart';
+mixin SelfDescribing {
+  String get description => toString();
+}
