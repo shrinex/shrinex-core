@@ -9,33 +9,33 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class KeyValueStore {
   /// Reads a value from persistent storage, throwing an exception if it's not a
-  /// bool.
+  /// bool
   bool? getBool(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not
-  /// an int.
+  /// an int
   int? getInt(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
-  /// double.
+  /// double
   double? getDouble(String key);
 
   /// Reads a value from persistent storage, throwing an exception if it's not a
-  /// String.
+  /// String
   String? getString(String key);
 
-  /// Saves a boolean [value] to persistent storage in the background.
+  /// Saves a boolean [value] to persistent storage in the background
   Future<bool> setBool(String key, bool value);
 
-  /// Saves an integer [value] to persistent storage in the background.
+  /// Saves an integer [value] to persistent storage in the background
   Future<bool> setInt(String key, int value);
 
-  /// Saves a double [value] to persistent storage in the background.
+  /// Saves a double [value] to persistent storage in the background
   ///
-  /// Android doesn't support storing doubles, so it will be stored as a float.
+  /// Android doesn't support storing doubles, so it will be stored as a float
   Future<bool> setDouble(String key, double value);
 
-  /// Saves a string [value] to persistent storage in the background.
+  /// Saves a string [value] to persistent storage in the background
   ///
   /// Note: Due to limitations in Android's SharedPreferences,
   /// values cannot start with any one of the following:
@@ -45,13 +45,11 @@ abstract class KeyValueStore {
   /// - 'VGhpcyBpcyB0aGUgcHJlZml4IGZvciBEb3VibGUu'
   Future<bool> setString(String key, String value);
 
-  /// Returns true if persistent storage the contains the given [key].
+  /// Returns true if persistent storage the contains the given [key]
   bool containsKey(String key);
 
-  /// Removes an entry from persistent storage.
+  /// Removes an entry from persistent storage
   Future<bool> remove(String key);
-
-  factory KeyValueStore.using(SharedPreferences prefs) = _KeyValueStore;
 }
 
 class _KeyValueStore implements KeyValueStore {
@@ -90,4 +88,9 @@ class _KeyValueStore implements KeyValueStore {
 
   @override
   Future<bool> remove(String key) => _prefs.remove(key);
+}
+
+extension KeyValueStoreConvertible on SharedPreferences {
+  /// Adapt SharedPreferences to KeyValueStore
+  KeyValueStore asKeyValueStore() => _KeyValueStore(this);
 }
