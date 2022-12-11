@@ -15,14 +15,28 @@ abstract class RawEnum<T> extends Enum implements RawRepresentable<T> {}
 
 /// Access enum values by rawValue
 extension EnumByRawValue<T, E extends RawEnum<T>> on Iterable<E> {
-  /// Finds the enum value in this list with rawValue [rawValue]
-  E byRawValue(T rawValue) {
-    for (var value in this) {
+  /// Finds the enum value in this list with [rawValue],
+  /// or null if specified rawValue does not match
+  E? byRawValue(T rawValue) {
+    for (final value in this) {
       if (value.rawValue == rawValue) {
         return value;
       }
     }
-    throw ArgumentError.value(
-        rawValue, "rawValue", "No enum value with that rawValue");
+    return null;
+  }
+
+  /// Finds the enum value in this list with [rawValue],
+  /// or throws error if specified rawValue does not match
+  E byRequiredRawValue(T rawValue) {
+    final result = byRawValue(rawValue);
+    if (result == null) {
+      throw ArgumentError.value(
+        rawValue,
+        "rawValue",
+        "No enum value with that rawValue",
+      );
+    }
+    return result;
   }
 }
