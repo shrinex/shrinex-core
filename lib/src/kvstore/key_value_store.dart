@@ -55,7 +55,7 @@ abstract class KeyValueStore {
 class _KeyValueStore implements KeyValueStore {
   final SharedPreferences _prefs;
 
-  _KeyValueStore(SharedPreferences prefs) : _prefs = prefs;
+  const _KeyValueStore(SharedPreferences prefs) : _prefs = prefs;
 
   @override
   bool? getBool(String key) => _prefs.getBool(key);

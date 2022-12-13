@@ -6,7 +6,8 @@
  */
 
 /// A type with a customized textual representation
-mixin SelfDescribing {
+/// Borrowed from Apple/Swift, e.g. CustomStringConvertible
+abstract class SelfDescribing {
   /// A textual representation of this instance
   String get description => toString();
 }

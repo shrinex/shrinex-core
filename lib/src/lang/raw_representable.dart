@@ -6,11 +6,15 @@
  */
 
 /// A type that can be converted to and from an associated raw value
+/// Borrowed from Apple/Swift
 abstract class RawRepresentable<T> {
   /// The corresponding value of the raw type
   T get rawValue;
 }
 
+/// Since dart does not support something like `E extends Enum & RawRepresentable`
+/// So I have to do this...
+/// See https://github.com/dart-lang/language/issues/2709
 abstract class RawEnum<T> extends Enum implements RawRepresentable<T> {}
 
 /// Access enum values by rawValue
