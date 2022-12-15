@@ -12,7 +12,7 @@ enum MockWidgetState implements RawEnum<int> {
   init(1),
   activate(2),
   deactivate(3),
-  dispose(4);
+  ;
 
   @override
   final int rawValue;
@@ -21,9 +21,9 @@ enum MockWidgetState implements RawEnum<int> {
 }
 
 void main() {
-  group("byRawValue", () {
+  group("RawEnum", () {
     test(
-        "byRawValue_whenMatch_returnsEnumValue",
+        "byRawValue() when match returns corresponding enum value",
         () => {
               expect(
                 MockWidgetState.values.byRawValue(1),
@@ -33,35 +33,52 @@ void main() {
                 MockWidgetState.values.byRawValue(2),
                 MockWidgetState.activate,
               ),
+              expect(
+                MockWidgetState.values.byRawValue(3),
+                MockWidgetState.deactivate,
+              ),
             });
 
     test(
-        "byRawValue_whenNotMatch_returnsNull",
+        "byRawValue() when not match returns null",
         () => {
               expect(
                 MockWidgetState.values.byRawValue(0),
                 null,
-              )
+              ),
+              expect(
+                MockWidgetState.values.byRawValue(4),
+                null,
+              ),
             });
-  });
-
-  group("byRequiredRawValue", () {
     test(
-        "byRequiredRawValue_whenMatch_returnsEnumValue",
+        "byRequiredRawValue() when match returns corresponding enum value",
         () => {
+              expect(
+                MockWidgetState.values.byRequiredRawValue(1),
+                MockWidgetState.init,
+              ),
+              expect(
+                MockWidgetState.values.byRequiredRawValue(2),
+                MockWidgetState.activate,
+              ),
               expect(
                 MockWidgetState.values.byRequiredRawValue(3),
                 MockWidgetState.deactivate,
-              )
+              ),
             });
 
     test(
-        "byRequiredRawValue_whenNotMatch_throwsArgumentError",
+        "byRequiredRawValue() when not match throws ArgumentError",
         () => {
               expect(
                 () => MockWidgetState.values.byRequiredRawValue(-1),
                 throwsArgumentError,
-              )
+              ),
+              expect(
+                () => MockWidgetState.values.byRequiredRawValue(4),
+                throwsArgumentError,
+              ),
             });
   });
 }

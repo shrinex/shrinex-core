@@ -11,12 +11,12 @@ import 'package:shrinex_core/shrinex_core.dart';
 class MockPet implements SelfDescribing {
   final String name;
 
-  final String master;
+  final String owner;
 
   @override
-  String get description => "$master's pet $name";
+  String get description => "$owner's pet $name";
 
-  const MockPet(this.master, this.name);
+  const MockPet(this.owner, this.name);
 }
 
 void main() {

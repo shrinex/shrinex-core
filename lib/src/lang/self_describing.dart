@@ -9,5 +9,5 @@
 /// Borrowed from Apple/Swift, e.g. CustomStringConvertible
 abstract class SelfDescribing {
   /// A textual representation of this instance
-  String get description => toString();
+  String get description;
 }
