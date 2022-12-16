@@ -51,6 +51,7 @@ void main() {
                 null,
               ),
             });
+
     test(
         "byRequiredRawValue() when match returns corresponding enum value",
         () => {
